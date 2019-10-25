@@ -1,9 +1,9 @@
 <template>
   <div class="bargain">
       <ul>
-         <li v-for="(item,index) in bargainList" :key="index">
-           <img :src="item.pic" alt="">
-           <div>
+          <router-link :to="'/bargain-details/'+item.id" tag="li" v-for="(item,index) in bargainList" :key="index">
+           <img :src="item.pic" alt="" @click="barId(item.id)">
+           <div @click="barId(item.id)">
              <p>{{item.name}}</p>
              <p>{{item.characteristic}}</p>
              <ul>
@@ -21,7 +21,7 @@
                </li>
              </ul>
            </div>
-         </li>
+        </router-link>
        </ul>
   </div>
 </template>
@@ -32,18 +32,24 @@ const _product = new Product()
 export default {
   computed: {
     bargainList () {
-      return this.$store.state.bargainList
+      return this.$store.state.bargainList.goodsMap
     }
   },
   data () {
     return {
     }
   },
+  methods: {
+    barId (v) {
+      this.$store.state.partId = v
+      // console.log(v)
+    }
+  },
   created () {
     // 砍价
     _product.list().then(res => {
-      // console.log(res.data)
-      this.$store.state.bargainList = res.data.data.goodsMap
+      console.log(res.data)
+      this.$store.state.bargainList = res.data.data
     })
   }
 
@@ -71,6 +77,8 @@ ul{
      }
       div{
          width: 60%;
+         height: 1.8rem;
+         position: relative;
          p{
              font-size:0.25rem;
           }
@@ -82,6 +90,10 @@ ul{
           ul{
             display: flex;
             justify-content: space-between;
+            height: 0.8rem;
+            position: absolute;
+            left:0;
+            bottom:0;
            li{
                width: 33.3%;
                display: flex;
@@ -102,7 +114,6 @@ ul{
                }
              }
            }
-
       }
    }
   }

@@ -15,6 +15,7 @@ class Product {
       url: 'https://api.it120.cc/small4/shop/goods/kanjia/list'
     })
   }
+  // 砍价详情
   // 精选方法
   jingx () {
     return _http.request({
@@ -47,6 +48,65 @@ class Product {
   fenxq () {
     return _http.request({
       url: 'https://api.it120.cc/small4/shop/goods/list'
+    })
+  }
+  // 登录接口
+  register (obj) {
+    return _http.request({
+      type: 'post',
+      url: `https://api.it120.cc/small4/user/m/login?deviceId=007&deviceName=monkey&mobile=${obj.mobile}&pwd=${obj.pwd}`
+      // data: {
+      //   // id: devname,
+      //   deviceName: devname
+      // }
+    })
+  }
+  // 省份
+  sheng () {
+    return _http.request({
+      url: 'https://api.it120.cc/common/region/province'
+    })
+  }
+  // 市
+  shi (pid) {
+    return _http.request({
+      type: 'post',
+      url: `https://api.it120.cc/common/region/child?pid=${pid}`,
+      data: {
+        id: pid
+      }
+    })
+  }
+  // 图形验证
+  tux (date) {
+    return _http.request({
+      type: 'post',
+      url: 'https://api.it120.cc/small4/verification/pic/get?key=' + date,
+      data: {
+        key: date
+      }
+    })
+  }
+  // 短信验证码
+  duanx (obj) {
+    return _http.request({
+      type: 'post',
+      url: `https://api.it120.cc/small4/verification/sms/get?mobile=${obj.mobile}&key=${obj.num}&picCode=${obj.picCode}`
+      // data: {
+      //   date: date,
+      //   key: key,
+      //   num: num
+      // }
+    })
+  }
+  // 商品评价数据
+  reput (id) {
+    return _http.request({
+      type: 'post',
+      url: `https://api.it120.cc/small4/shop/goods/reputation?goodsId=${id}`
+      // data: {
+      //   goodsld: id
+      // }
     })
   }
   // detail方法

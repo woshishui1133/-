@@ -12,7 +12,10 @@ import Home from '../view/Home'
 import claDeta from '../components/classify/class-details'
 import PersCen from '../view/personal-center'
 import Tologin from '../components/To login/Tologin'
-
+import Register from '../components/To login/register'
+import Sign from '../components/signin/sign'
+import Conver from '../components/signin/conver'
+import Barinfo from '../components/bargain/bargain_info'
 Vue.use(Router)
 
 export default new Router({
@@ -85,6 +88,30 @@ export default new Router({
       path: '/Tologin',
       name: 'Tologin',
       component: Tologin
+    },
+    // 注册页面
+    {
+      path: '/register',
+      name: 'Register',
+      component: Register
+    },
+    // 签到
+    {
+      path: '/sign',
+      name: 'Sign',
+      component: Sign
+    },
+    // 兑换
+    {
+      path: '/conver',
+      name: 'Conver',
+      component: Conver
+    },
+    // 砍价页
+    {
+      path: '/bargain_info',
+      name: 'Barinfo',
+      component: Barinfo
     }
   ]
 })

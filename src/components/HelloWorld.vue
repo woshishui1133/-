@@ -9,21 +9,22 @@
     </div>
      <div class="nav">
         <ul>
-          <li>
+         <router-link to='/sign' tag="li">
             <img src="../assets/1571703000(1).png" alt="">
-            <a href="#">签到</a>
-            </li>
-          <li>
+            <p>签到</p>
+          </router-link>
+          <router-link to="/conver" tag='li'>
             <img src="../assets/1571703024(1).png" alt="">
-            <a href="#">礼卷</a>
-            </li>
-          <li><img src="../assets/1571703040(1).png" alt="">
-            <a href="#">砍价</a>
-          </li>
-          <li>
+            <p>礼卷</p>
+          </router-link>
+          <router-link to="/bargain" tag='li'>
+            <img src="../assets/1571703040(1).png" alt="">
+            <p>砍价</p>
+          </router-link>
+           <router-link to='/special' tag='li'>
             <img src="../assets/1571703065(1).png" alt="">
-            <a href="#">专栏</a>
-          </li>
+            <p>专栏</p>
+          </router-link>
         </ul>
      </div>
      <!-- 砍价 -->
@@ -112,7 +113,7 @@ color: black;
           height: 0.8rem;
           margin: 0 auto;
         }
-        a{
+        p{
           width: 100%;
         }
       }

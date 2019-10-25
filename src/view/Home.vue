@@ -2,8 +2,6 @@
   <div>
       <Hell></Hell>
       <Route></Route>
-      <!-- <router-view/> -->
-
   </div>
 </template>
 

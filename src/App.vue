@@ -20,4 +20,7 @@ export default {
 ul{
   list-style: none;
 }
+.quanx1{
+  width: 7.5rem;
+}
 </style>

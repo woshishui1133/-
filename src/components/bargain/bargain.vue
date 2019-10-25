@@ -5,11 +5,10 @@
         <p>砍价列表</p>
       </div>
        <ul>
-         <li v-for="(item,index) in bargainList" :key="index">
-           <img :src="item.pic" alt="">
-           <div>
-             <!-- <p>{{item.name}}</p> -->
-             <router-link :to="'/bargain-details/'+item.id" tag="p">{{item.name}}</router-link>
+         <router-link :to="'/bargain-details/'+item.id" v-for="(item,index) in bargainList" :key="index" tag="li" >
+           <img :src="item.pic" alt="" @click="barId(item.id)">
+           <div @click="barId(item.id)">
+             <p>{{item.name}}</p>
              <p>{{item.characteristic}}</p>
              <ul>
                <li>
@@ -26,7 +25,7 @@
                </li>
              </ul>
            </div>
-         </li>
+        </router-link>
        </ul>
   </div>
 </template>
@@ -35,7 +34,13 @@
 export default {
   computed: {
     bargainList () {
-      return this.$store.state.bargainList
+      return this.$store.state.bargainList.goodsMap
+    }
+  },
+  methods: {
+    barId (v) {
+      this.$store.state.partId = v
+      // console.log(v)
     }
   }
 
