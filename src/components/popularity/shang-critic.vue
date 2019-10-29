@@ -4,7 +4,7 @@
        <p @click="comm">商品介绍</p>
        <p @click="pin(partId)">商品评价</p>
      </div>
-     <div v-html='quans.content' v-show="!show" class="qaunx1"> </div>
+     <div v-html='quans.content' v-show="!show" class="quanx1"> </div>
      <div class="pingl">
        <ul>
          <li v-for="(item,index) in pinlun" :key="index">
@@ -70,6 +70,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
 .shang{
   width: 100%;
   display: flex;

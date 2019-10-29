@@ -1,11 +1,11 @@
 <template>
   <div class="cladeta">
     <div class="top">
-      <router-link to="/classify" tag="span">返回</router-link>
+      <router-link to="/classify" tag="span">回</router-link>
       <p>分类商品</p>
     </div>
      <ul>
-       <li v-for="(item,index) in fenxq" :key="index">
+       <router-link :to="{path:'/particulars',query:{id:item.id}}" tag="li" v-for="(item,index) in fenxq" :key="index">
          <div>
            <img :src="item.pic" alt="">
            <p>{{item.characteristic}}</p>
@@ -16,7 +16,7 @@
             <h1 v-show="item.minPrice<1">￥{{item.minPrice}}</h1>
             <span>已售{{item.numberSells}}</span>
           </div>
-       </li>
+       </router-link>
      </ul>
   </div>
 </template>

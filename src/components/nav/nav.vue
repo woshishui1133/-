@@ -5,15 +5,15 @@
           <i class="el-icon-s-home"></i>
           <p>首页</p>
         </router-link>
-        <li>
+       <router-link to="/classify" tag="li">
          <i class="el-icon-s-order"></i>
-          <!-- <p>分类</p> -->
-          <router-link to="/classify" tag="p">分类</router-link>
-        </li>
-        <li>
+          <p>分类</p>
+        </router-link>
+        <router-link to="/shopping" tag="li">
            <i class=" el-icon-shopping-cart-full"></i>
+           <span class="num11">{{numss}}</span>
             <p>购物车</p>
-        </li>
+       </router-link>
          <router-link to="personal-center" tag="li">
           <i class="el-icon-s-custom"></i>
            <p>个人</p>
@@ -24,7 +24,11 @@
 
 <script>
 export default {
-
+  computed: {
+    numss () {
+      return this.$store.getters.nums
+    }
+  }
 }
 </script>
 
@@ -33,13 +37,25 @@ export default {
   list-style: none;
   width: 100%;
   height: 0.8rem;
+  background: white;
   // border: 0.01rem solid;
   display: flex;
   justify-content: space-around;
   font-size: 0.16rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
   li{
     width: 25%;
     text-align: center;
+    .num11{
+      display: inline-block;
+      color: white;
+      width: 0.25rem;
+      height: 0.25rem;
+      background: red;
+      border-radius: 50%;
+    }
     .el-icon-s-home{
       font-size: 0.5rem;
     }

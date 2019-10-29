@@ -16,6 +16,11 @@ import Register from '../components/To login/register'
 import Sign from '../components/signin/sign'
 import Conver from '../components/signin/conver'
 import Barinfo from '../components/bargain/bargain_info'
+import Shopp from '../components/shopping/shopping'
+import Orderform from '../components/shopping/orderform'
+import Site from '../components/shopping/site'
+import Sitelist from '../components/shopping/sitelist'
+import Ordernumber from '../components/shopping/ordernumber'
 Vue.use(Router)
 
 export default new Router({
@@ -23,6 +28,9 @@ export default new Router({
     {
       path: '/',
       component: Home,
+      mat: {
+        requireAuth: true
+      },
       children: [
         {
           path: '',
@@ -112,6 +120,74 @@ export default new Router({
       path: '/bargain_info',
       name: 'Barinfo',
       component: Barinfo
+    },
+    // 购物车
+    {
+      path: '/shopping',
+      name: 'Shopp',
+      component: Shopp
+    },
+    // 订单页面
+    {
+      path: '/orderform',
+      name: 'Orderform',
+      component: Orderform
+    },
+    // 地址
+    {
+      path: '/site',
+      name: 'Site',
+      component: Site
+    },
+    // 地址详情
+    {
+      path: '/sitelist',
+      name: 'Sitelist',
+      component: Sitelist
+    },
+    // 订单号页面
+    {
+      path: '/ordernumber',
+      name: 'Ordernumber',
+      component: Ordernumber
     }
   ]
 })
+
+// Router.beforeEach((to, from, next) => {
+//   if (to.meta.requireAuth) {
+//     if (sessionStorage.getItem('token') === 'true') {
+//       next()
+//     } else {
+//       // 未登录，跳转到登录页面
+//       next({
+//         path: '/Tologin'
+//       })
+//     }
+//   } else {
+//     if (sessionStorage.getItem('token') === 'true') {
+//       next('/Home')
+//     } else {
+//       next()
+//     }
+//   }
+// })
+
+// Router.beforeEach((to, from, next) => {
+//   if (to.meta.requireAuth) { // 判断该路由是否需要登录权限
+//     if (sessionStorage.getItem('token') === 'true') { // 判断本地是否存在token
+//       next()
+//     } else {
+//       // 未登录,跳转到登陆页面
+//       next({
+//         path: '/Tologin'
+//       })
+//     }
+//   } else {
+//     if (sessionStorage.getItem('token') === 'true') {
+//       next('/Home')
+//     } else {
+//       next()
+//     }
+//   }
+// })

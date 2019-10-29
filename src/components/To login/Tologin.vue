@@ -3,8 +3,8 @@
      <div class="tologin">
        <h1>账号登录</h1>
        <p>小范-严选商城欢迎你</p>
-       <input type="text" placeholder="手机号码" v-model="mobile">
-       <input type="password" placeholder="密码" v-model="mima">
+       <input type="text" placeholder="手机号码" @blur="blur" v-model="mobile">
+       <input type="password" placeholder="密码" @blur="blur2" v-model="mima">
        <button @click="denglu(mobile,mima)">登录</button>
        <router-link to="/" tag="p">忘记密码</router-link>
        <router-link to='/register' tag='p'>还没有注册？立即注册</router-link>
@@ -27,12 +27,38 @@ export default {
   created () {
   },
   methods: {
+    blur () {
+      if (!this.mobile) {
+        alert('手机号不能为空')
+      } else if (!(/^1(3|4|5|7|8)\d{9}$/.test(this.mobile))) {
+        alert('手机号不正确')
+      }
+    },
+    blur2 () {
+      if (!this.mima) {
+        alert('密码不能为空')
+      } else if (!(/^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{8,30}$/.test(this.mima))) {
+        alert('密码不正确')
+      }
+    },
     denglu (v, m) {
       console.log(v, m)
       let obj = {
         mobile: v,
         pwd: m
       }
+
+      // let _this = this
+      // this.$refs[obj].validate((valid) => {
+      //   if (valid) {
+      //     sessionStorage.setItem('token', 'true')
+      //     _this.$router.push({path: '/Home'})
+      //   } else {
+      //     console.log('error submit!!')
+      //     return false
+      //   }
+      // })
+
       _product.register(obj).then(res => {
         console.log(res.data)
         if (res.data.code === 0) {
@@ -50,7 +76,8 @@ export default {
     '$store.state.token': {
       handler: function () {
         loca.save('1902', this.$store.state.token)
-      }
+      },
+      deep: true
     }
   }
 }

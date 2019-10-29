@@ -16,15 +16,104 @@ const store = new Vuex.Store({
     barinId: '', // 砍价详情传的ID
     barId: '',
     bainfo: [], // 砍价详情
-    helps: [] // 已砍的价格
-
+    helps: [], // 已砍的价格
+    num: 1, // 购物车数量
+    gouwuList: [], // 购物车的数据
+    qxcheck: { check: true }, // 全选
+    dele: false,
+    dizhilist: [], // 地址数据
+    moren: []
   },
   mutations: {
+    // 登录
     fan (state, obj) {
       console.log(obj)
       state.token.push(obj)
       JSON.parse(window.localStorage.getItem('1902'))
+      console.log(state.token)
+
       // state.token = obj
+    },
+    // 购物车数据
+    gouwulist (state, val) {
+      let index = state.gouwuList.findIndex(item => {
+        return item.colorid === val.colorid && item.sizeid === val.sizeid
+      })
+      if (index === -1) {
+        state.gouwuList.push(val)
+      } else {
+        state.gouwuList[index].num++
+      }
+      // this.$store.state.gouwuList = JSON.parse(window.localStorage.getItem('gouwu'))
+      console.log(state.gouwuList)
+    },
+    // 复选框
+    xuan (state) {
+      console.log(1)
+      let arr = state.gouwuList.every(item => {
+        return item.checked === true
+      })
+      console.log(arr)
+      if (arr) {
+        state.qxcheck.check = true
+      } else {
+        state.qxcheck.check = false
+      }
+    },
+    // 全选框
+    qcheck (state) {
+      state.qxcheck.check = !state.qxcheck.check
+      state.gouwuList.map(item => {
+        item.checked = !item.checked
+      })
+    },
+    // 点击完成
+    accom (state) {
+      state.qxcheck.check = !state.qxcheck.check
+      state.gouwuList.map(item => {
+        item.checked = false
+      })
+      state.dele = true
+    },
+    // 点击编辑
+    editor (state) {
+      state.qxcheck.check = !state.qxcheck.check
+      state.gouwuList.map(item => {
+        item.checked = true
+      })
+      state.dele = false
+    },
+    // 删除
+    deleted (state) {
+      let arr = []
+      state.gouwuList.filter((item, index) => {
+        if (item.checked === false) {
+          arr.push(item)
+        }
+      })
+      state.gouwuList = arr
+    }
+  },
+  getters: {
+    // 总个数
+    nums (state) {
+      let numss1 = 0
+      state.gouwuList.map(item => {
+        numss1 += item.num
+        // console.log(numss1)
+      })
+      return numss1
+    },
+    // 总价
+    prices (state) {
+      let pricess = 0
+      state.gouwuList.map(item => {
+        if (item.checked === true) {
+          pricess += item.num * item.barinfo.basicInfo.minPrice
+          console.log(pricess)
+        }
+      })
+      return pricess
     }
   }
 })

@@ -4,7 +4,8 @@
         <img src="../assets/zz.gif" alt="">
         <div>
           <!-- <p>点击登录</p> -->
-          <router-link to="/Tologin" tag="p">点击登录</router-link>
+          <router-link to="/Tologin" v-show="!show" tag="p">点击登录</router-link>
+          <span v-show="show">登录成功</span>
           <p>积分：0</p>
         </div>
       </div>
@@ -69,6 +70,20 @@
 
 <script>
 export default {
+  data () {
+    return {
+      show: false
+    }
+  },
+  created () {
+    let token = JSON.parse(window.localStorage.getItem('1902'))
+    if (token) {
+      this.show = true
+    } else {
+      this.show = false
+    }
+    console.log(token)
+  }
 
 }
 </script>
@@ -91,7 +106,7 @@ export default {
        font-size: 0.25rem;
        color: white;
     }
-    p:nth-child(2){
+    p:nth-child(3){
       width: 1rem;
       height: 0.3rem;
       background:rgba(0,0,0,0.3);

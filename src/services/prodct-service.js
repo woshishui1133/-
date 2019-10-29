@@ -109,6 +109,54 @@ class Product {
       // }
     })
   }
+  // 添加购物车的选择规格和尺寸
+  goulist (obj) {
+    return _http.request({
+      type: 'post',
+      url: `https://api.it120.cc/small4/shop/goods/price?goodsId=${obj.sid}&propertyChildIds=${obj.propid + ',' + obj.prcolor}`
+    })
+  }
+  // 收货地址列表
+  dizhi (token) {
+    return _http.request({
+      type: 'post',
+      url: `https://api.it120.cc/small4/user/shipping-address/list?token=${token}`
+      // data: {
+      //   token: token
+      // }
+    })
+  }
+  // 默认收货地址
+  default (token) {
+    return _http.request({
+      type: 'post',
+      url: `https://api.it120.cc/small4/user/shipping-address/default?token=${token}`
+
+    })
+  }
+
+  添加收货地址
+  shouhuo (obg) {
+    return _http.request({
+      type: 'post',
+      url: `https://api.it120.cc/small4/user/shipping-address/add?address=${obg.xq}&cityId=${obg.shiId}&code=${obg.postal}&linkMan=${obg.name}&mobile=${obg.mobile}&provinceId=${obg.shengId}&token=${obg.token}`
+    })
+  }
+  // 删除收货地址
+  deledizhi (obj) {
+    return _http.request({
+      type: 'post',
+      url: `https://api.it120.cc/small4/user/shipping-address/delete?token=${obj.token}&id=${obj.id}`
+    })
+  }
+  // 订单号的生成
+  ddhao (obj) {
+    return _http.request({
+      type: 'post',
+      url: `https://api.it120.cc/small4/order/create?token=${obj.token}&goodsJsonStr=${obj.JSON}`
+    })
+  }
+
   // detail方法
   detail (productId) {
     return _http.request({

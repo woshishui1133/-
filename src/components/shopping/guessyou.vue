@@ -1,7 +1,10 @@
 <template>
-  <div class="popul">
+<div class="ge">
+
+  <div class="guess">
+     <h2>猜你喜欢</h2>
      <ul>
-         <router-link :to="{path:'/particulars',query:{id:item.id}}" tag="li" v-for="(item,index) in proplist" :key="index">
+         <router-link :to="{path:'/particulars',query:{id:item.id}}" tag="li" v-for="(item,index) in populist" :key="index">
           <img :src="item.pic" alt="">
           <div>
             <p>{{item.name}}</p>
@@ -12,37 +15,48 @@
        </router-link>
      </ul>
   </div>
+  </div>
 </template>
 
 <script>
-import Product from '../../services/prodct-service'
-const _product = new Product()
 export default {
-  computed: {
-
-  },
   data () {
     return {
-      proplist: []
+      populist: []
     }
   },
   created () {
-    // 人气推荐
-    _product.renq().then(res => {
-      console.log(res.data.data)
-      this.proplist = res.data.data.splice(8, 4)
-      this.$store.state.popularitylList = res.data.data
-      console.log(this.$store.state.popularitylList)
-    })
+    let num = Math.floor(Math.random() * this.$store.state.popularitylList.length)
+    console.log(num)
+    if (num > 4) {
+      this.populist = this.$store.state.popularitylList.splice((num - 4), 4)
+    } else {
+      this.populist = this.$store.state.popularitylList.splice(num, 4)
+    }
+  },
+  methods: {
+
   }
 }
 </script>
 
-<style lang="scss"  scoped>
-.popul{
-  //  width: 7.2rem;
-     margin-left:0rem;
-   ul{
+<style lang='scss' scoped>
+.ge{
+   position: relative;
+   margin-top:3rem;
+}
+.guess{
+    width: 100%;
+    height: 100%;
+    background: white;
+    position: absolute;
+    bottom:0;
+    left: 0;
+h2{
+  text-align: center;
+  height: 0.5rem;
+}
+ul{
      list-style: none;
      display: flex;
      flex-wrap: wrap;
@@ -51,7 +65,7 @@ export default {
        width: 40%;
        position: relative;
        img{
-         height: 3.2rem;
+         height: 3rem;
        }
        div{
          width: 80%;
@@ -74,4 +88,5 @@ export default {
      }
    }
 }
+
 </style>

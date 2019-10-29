@@ -11,7 +11,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 *{
   margin: 0;
   padding: 0;
@@ -21,6 +21,9 @@ ul{
   list-style: none;
 }
 .quanx1{
-  width: 7.5rem;
+    width: 7.5rem !important;
+    img{
+      width: 100% !important;
+    }
 }
 </style>
