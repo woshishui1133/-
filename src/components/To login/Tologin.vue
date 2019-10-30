@@ -37,7 +37,7 @@ export default {
     blur2 () {
       if (!this.mima) {
         alert('密码不能为空')
-      } else if (!(/^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{8,30}$/.test(this.mima))) {
+      } else if (!(/^[0-9_]+$/.test(this.mima))) {
         alert('密码不正确')
       }
     },

@@ -92,11 +92,6 @@ class Product {
     return _http.request({
       type: 'post',
       url: `https://api.it120.cc/small4/verification/sms/get?mobile=${obj.mobile}&key=${obj.num}&picCode=${obj.picCode}`
-      // data: {
-      //   date: date,
-      //   key: key,
-      //   num: num
-      // }
     })
   }
   // 商品评价数据
@@ -104,9 +99,6 @@ class Product {
     return _http.request({
       type: 'post',
       url: `https://api.it120.cc/small4/shop/goods/reputation?goodsId=${id}`
-      // data: {
-      //   goodsld: id
-      // }
     })
   }
   // 添加购物车的选择规格和尺寸
@@ -121,9 +113,6 @@ class Product {
     return _http.request({
       type: 'post',
       url: `https://api.it120.cc/small4/user/shipping-address/list?token=${token}`
-      // data: {
-      //   token: token
-      // }
     })
   }
   // 默认收货地址
@@ -135,7 +124,7 @@ class Product {
     })
   }
 
-  添加收货地址
+  // 添加收货地址
   shouhuo (obg) {
     return _http.request({
       type: 'post',
@@ -149,11 +138,15 @@ class Product {
       url: `https://api.it120.cc/small4/user/shipping-address/delete?token=${obj.token}&id=${obj.id}`
     })
   }
-  // 订单号的生成
-  ddhao (obj) {
+  // 订单详情
+  orderxq (token, id) {
     return _http.request({
       type: 'post',
-      url: `https://api.it120.cc/small4/order/create?token=${obj.token}&goodsJsonStr=${obj.JSON}`
+      url: `https://api.it120.cc/small4/order/detail`,
+      data: {
+        token: token,
+        id: id
+      }
     })
   }
 

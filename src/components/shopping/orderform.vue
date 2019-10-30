@@ -10,20 +10,14 @@
           <p><i class="el-icon-plus"></i></p>
           <p>新增收货地址</p>
         </div>
-        <div v-show="moren.id" class="site_dizhi">
-          <i class="el-icon-location-outline"></i>
-          <div>
-            <p>{{moren.linkMan}}</p>
-            <p>{{moren.mobile}}</p>
-            <p>{{moren.address}}</p>
-          </div>
-        </div>
+        <!-- 默认地址组件 -->
+        <Moren></Moren>
         <p><i class="el-icon-arrow-right"></i></p>
       </router-link>
       <div class="order_con">
         <p class="ord_top">商品列表</p>
         <ul>
-          <li v-for="(item,index) in order" :key="index">
+          <li v-for="(item,index) in orderlist" :key="index">
               <img :src="item.barinfo.basicInfo.pic" alt="">
               <div class="ordxq">
                 <p>{{item.barinfo.basicInfo.name}}</p>
@@ -57,29 +51,26 @@
       </div>
       <div class="submit">
           <p>合计：￥{{prices}}</p>
-          <!-- <p>提交订单</p> -->
-          <router-link to='/ordernumber' tag='p'>
+           <router-link :to="{path:'/ordernumber',query:{orderId: this.$store.state.ordernumber.id}}" tag='p'>
           <span @click="dingdan1">提交订单</span>
           </router-link>
       </div>
-
     </div>
-
   </div>
 </template>
 
 <script>
+import Moren from './morendizhi'
 import Product from '../../services/prodct-service'
+import loca from '../../vuex/JSON'
+import Qs from 'Qs'
+import Axios from 'axios'
 const _product = new Product()
 export default {
+  components: {
+    Moren
+  },
   computed: {
-    order () {
-      return this.$store.state.gouwuList.map(item => {
-        if (item.checked === true) {
-          return item
-        }
-      })
-    },
     // 总价
     prices () {
       return this.$store.getters.prices
@@ -91,35 +82,84 @@ export default {
   data () {
     return {
       dizhilist: [],
-      token: ''
+      token: '',
+      orderlist: [],
+      payment: []
     }
   },
   created () {
     let token = JSON.parse(window.localStorage.getItem('1902'))
+    this.$store.state.gouwuList = JSON.parse(window.localStorage.getItem('gouwu'))
     this.token = token[0].kk
-    console.log(this.token[0].kk)
+    // console.log(this.token)
     _product.default(token[0].kk).then(res => {
-      console.log(res.data)
+      // console.log(res.data)
       this.$store.state.moren = res.data.data
       console.log(this.$store.state.moren)
     })
+
+    // 购物车数据过滤
+    this.$store.state.gouwuList.map(item => {
+      if (item.checked === true) {
+        this.orderlist.push(item)
+        console.log(this.orderlist)
+      }
+    })
+    let aa = {
+      'goodsId': '',
+      'number': '',
+      'propertyChildIds': '',
+      'logisticsType': ''
+    }
+    this.orderlist.map(item => {
+      aa = {
+        'goodsId': item.barinfo.basicInfo.id,
+        'number': item.num,
+        'propertyChildIds': `${item.sizeid},${item.colorid}`,
+        'logisticsType': 0
+      }
+      this.payment.push(aa)
+    })
+    console.log(this.payment)
+    // 订单号生成
+    let obj = {
+      token: token[0].kk,
+      goodsJsonStr: JSON.stringify(this.payment)
+    }
+    Axios({
+      method: 'post',
+      url: 'https://api.it120.cc/small4/order/create',
+      data: Qs.stringify(obj)
+    }).then(res => {
+      console.log(res.data)
+      this.$store.state.ordernumber = res.data.data
+      console.log(this.$store.state.ordernumber)
+    })
   },
   methods: {
+    // 提交订单
     dingdan1 () {
-      this.$store.state.gouwuList.map(item => {
-        if (item.checked === true) {
-          console.log(item)
+      let arr = []
+      this.$store.state.gouwuList.forEach(item => {
+        if (item.checked === false) {
+          arr.push(item)
         }
       })
-      let aa = [{'goodsld': 5555}]
-      let obj = {
-        token: this.token,
-        JSON: JSON.stringify(aa)
-      }
-      _product.ddhao(obj).then(res => {
-        console.log(res.data)
-      })
-      console.log(11)
+      this.$store.state.gouwuList = arr
+    }
+  },
+  watch: {
+    '$store.state.gouwuList': {
+      handler: function () {
+        loca.save('gouwu', this.$store.state.gouwuList)
+      },
+      deep: true
+    },
+    '$store.state.ordernumber': {
+      handler: function () {
+        loca.save('order', this.$store.state.ordernumber)
+      },
+      deep: true
     }
   }
 }
@@ -168,22 +208,7 @@ export default {
         }
       }
     }
-    .site_dizhi{
-       display: flex;
-       width: 3rem;
-       align-items: center;
-       justify-content: space-around;
-       div{
-         width: 2rem;
-         display: flex;
-         flex-wrap: wrap;
-         p:nth-child(3){
-           font-size: 0.18rem;
-           color: slategrey;
-           margin-top: 0.1rem;
-         }
-       }
-    }
+
     .el-icon-arrow-right{
       font-size: 0.3rem;
       padding-right:0.3rem;

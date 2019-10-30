@@ -16,6 +16,7 @@
 
 <script>
 import Product from '../../services/prodct-service'
+import loca from '../../vuex/JSON'
 const _product = new Product()
 export default {
   computed: {
@@ -34,6 +35,14 @@ export default {
       this.$store.state.popularitylList = res.data.data
       console.log(this.$store.state.popularitylList)
     })
+  },
+  watch: {
+    '$store.state.popularitylList': {
+      handler: function () {
+        loca.save('popul', this.$store.state.popularitylList)
+      },
+      deep: true
+    }
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div>
       <Hell></Hell>
-      <Route></Route>
+      <!-- <Route></Route> -->
   </div>
 </template>
 

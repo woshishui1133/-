@@ -24,6 +24,7 @@ ul{
     width: 7.5rem !important;
     img{
       width: 100% !important;
+      height: 100% !important;
     }
 }
 </style>

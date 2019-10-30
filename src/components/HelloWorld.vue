@@ -33,7 +33,6 @@
       <Special></Special>
       <!-- 人气推荐 -->
       <Popularity></Popularity>
-    <!-- <Route></Route> -->
   </div>
 </template>
 
@@ -77,11 +76,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 
-*{
-  margin: 0;
-  padding: 0;
-  font-size: 0.20rem;
-}
 ul{
   list-style: none;
 }
@@ -90,6 +84,7 @@ text-decoration: none;
 color: black;
 }
 .hello{
+  height: 110%;
   .el-carousel__item{
     img{
       width: 100%;

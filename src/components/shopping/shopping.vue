@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="ss1">
+
     <div class="shop-top">
       <span @click="accom" v-show="!dele" v-if="gouwulist.length>0">完成</span>
       <span @click="editor" v-show="dele" v-if="gouwulist.length>0">编辑</span>
@@ -35,6 +36,7 @@
          </li>
        </ul>
     </div>
+    <Guess></Guess>
     <div class="place" v-if="gouwulist.length>0">
        <div class="place_left">
          <input type="checkbox" v-model="check.check" @change="qcheck">
@@ -46,7 +48,6 @@
         <p v-show="dele"  class="dele" @click="deleted">删除</p>
       </div>
     </div>
-   <Guess></Guess>
   </div>
 </template>
 
@@ -124,13 +125,17 @@ export default {
     },
     // 下单
     xiadan () {
+      let arr = []
       this.$store.state.gouwuList.map(item => {
-        if (item.checked === false) {
-          alert('选择商品')
-        } else {
-          this.$router.push({path: '/orderform'})
+        if (item.checked === true) {
+          arr.push(item)
         }
       })
+      if (arr.length <= 0) {
+        alert('选择商品')
+      } else {
+        this.$router.push({path: '/orderform'})
+      }
     }
   },
   watch: {
@@ -145,6 +150,10 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+.ss1{
+  position: relative;
+}
+
 .shop-top{
   height: 0.5rem;
   border-bottom:0.01rem solid slategray;
@@ -162,7 +171,7 @@ export default {
   }
 }
 .goucon{
-  position: relative;
+  // position: relative;
   // height: 5rem;
   ul{
     li{
@@ -219,7 +228,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   position: fixed;
-  bottom:0;
+  bottom:0.8rem;
   left: 0;
   z-index: 5;
   background: white;

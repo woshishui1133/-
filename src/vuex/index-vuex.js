@@ -22,14 +22,15 @@ const store = new Vuex.Store({
     qxcheck: { check: true }, // 全选
     dele: false,
     dizhilist: [], // 地址数据
-    moren: []
+    moren: [], // 默认地址
+    ordernumber: []// 订单号数据
   },
   mutations: {
     // 登录
     fan (state, obj) {
       console.log(obj)
       state.token.push(obj)
-      JSON.parse(window.localStorage.getItem('1902'))
+      this.$store.state.token = JSON.parse(window.localStorage.getItem('1902'))
       console.log(state.token)
 
       // state.token = obj
@@ -110,7 +111,7 @@ const store = new Vuex.Store({
       state.gouwuList.map(item => {
         if (item.checked === true) {
           pricess += item.num * item.barinfo.basicInfo.minPrice
-          console.log(pricess)
+          // console.log(pricess)
         }
       })
       return pricess

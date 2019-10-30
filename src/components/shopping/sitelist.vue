@@ -55,6 +55,7 @@ export default {
     //     this.$store.state.dizhilist[index].isDefault = true
     //   }
     // }
+    // 删除地址
     dele (id) {
       let obj = {
         token: this.token,

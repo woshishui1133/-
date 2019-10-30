@@ -37,6 +37,9 @@ export default {
       return this.$store.state.bargainList.goodsMap
     }
   },
+  created () {
+    this.$store.state.bargainList = JSON.parse(window.localStorage.getItem('bar'))
+  },
   methods: {
     barId (v) {
       this.$store.state.partId = v

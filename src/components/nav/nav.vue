@@ -45,6 +45,7 @@ export default {
   position: fixed;
   bottom: 0;
   left: 0;
+  z-index: 22;
   li{
     width: 25%;
     text-align: center;

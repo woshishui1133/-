@@ -15,12 +15,15 @@ export default {
 </script>
 
 <style lang="scss"  scoped >
-
-p{
+.pop{
+  height: 8.6rem;
+}
+   p{
       width: 100%;
       height: 0.5rem;
       line-height: 0.5rem;
       border-bottom: 0.01rem solid slategrey;
       text-align: center;
+      margin-bottom: 0.2rem;
     }
 </style>

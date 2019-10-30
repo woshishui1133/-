@@ -99,6 +99,8 @@ export default {
   img{
     margin: 0 0.3rem;
     border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
   }
   div{
     height: 1.5rem;

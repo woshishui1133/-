@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import loca from '../../vuex/JSON'
 import Product from '../../services/prodct-service'
 const _product = new Product()
 export default {
@@ -51,6 +52,13 @@ export default {
       console.log(res.data)
       this.$store.state.bargainList = res.data.data
     })
+  },
+  watch: {
+    '$store.state.bargainList': {
+      handler: function () {
+        loca.save('bar', this.$store.state.bargainList)
+      }
+    }
   }
 
 }

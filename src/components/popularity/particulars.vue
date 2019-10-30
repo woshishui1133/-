@@ -102,7 +102,8 @@ export default {
       color: '',
       name: '',
       name1: '',
-      minprice: ''
+      minprice: '',
+      prId: ''
     }
   },
   created () {
@@ -133,10 +134,12 @@ export default {
       console.log(obj)
       _product.goulist(obj).then(res => {
         console.log(res.data.data)
+        this.prId = res.data.data.id
         this.minprice = res.data.data.price
         this.bainfo.minPrice = this.minprice
       })
     },
+    // 规格
     gouwujia (val, id, ii, n) {
       console.log(val, id)
       this.show = true
@@ -147,6 +150,7 @@ export default {
       // console.log(ii, this.index)
       this.goo()
     },
+    // 颜色
     gouwujia1 (val, ii, nn) {
       this.show = true
       this.index11 = ii
@@ -155,7 +159,7 @@ export default {
       this.colorid = val.id
       console.log(val, ii, nn)
       this.goo()
-      this.bainfo.minPrice = this.minprice
+      // this.bainfo.minPrice = this.minprice
     },
     jia () {
       this.$store.state.num++
@@ -167,26 +171,25 @@ export default {
       }
     },
     gouwuche () {
-      if (this.size === '') {
-        this.guishow = true
-      } else if (this.size === '' || !this.color === '') {
+      if (this.prId) {
+        let obg = {
+          barinfo: this.$store.state.commList,
+          num: this.$store.state.num,
+          name: this.name,
+          name1: this.name1,
+          color: this.color,
+          colorid: this.colorid,
+          checked: true,
+          size: this.size,
+          sizeid: this.sizeid
+        }
+        console.log(obg)
+        this.$store.commit('gouwulist', obg)
+      } else {
         this.guishow = true
       }
-
-      let obg = {
-        barinfo: this.$store.state.commList,
-        num: this.$store.state.num,
-        name: this.name,
-        name1: this.name1,
-        color: this.color,
-        colorid: this.colorid,
-        checked: true,
-        size: this.size,
-        sizeid: this.sizeid
-      }
-      console.log(obg)
-      this.$store.commit('gouwulist', obg)
-
+      this.sizeid = ''
+      this.colorid = ''
       this.index00 = 99
       this.index11 = 99
       this.$store.state.num = 1

@@ -26,6 +26,8 @@ export default {
     }
   },
   created () {
+    // 全部商品信息
+    this.$store.state.popularitylList = JSON.parse(window.localStorage.getItem('popul'))
     let num = Math.floor(Math.random() * this.$store.state.popularitylList.length)
     console.log(num)
     if (num > 4) {
@@ -49,8 +51,8 @@ export default {
     width: 100%;
     height: 100%;
     background: white;
-    position: absolute;
-    bottom:0;
+    position: relative;
+    bottom:1.8rem;
     left: 0;
 h2{
   text-align: center;

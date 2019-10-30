@@ -6,8 +6,8 @@ import barDeta from '@/components/bargain/bargain-details'
 import Special from '@/components/special/special'
 import Details from '@/components/special/details'
 import Classify from '@/view/classify'
-import Particulars from '../components/popularity/particulars'
-import Route from '../components/route'
+import Particulars from '@/components/popularity/particulars'
+import Route from '@/components/route'
 import Home from '../view/Home'
 import claDeta from '../components/classify/class-details'
 import PersCen from '../view/personal-center'
@@ -21,27 +21,40 @@ import Orderform from '../components/shopping/orderform'
 import Site from '../components/shopping/site'
 import Sitelist from '../components/shopping/sitelist'
 import Ordernumber from '../components/shopping/ordernumber'
+
 Vue.use(Router)
 
 export default new Router({
   routes: [
+
     {
       path: '/',
-      component: Home,
-      mat: {
-        requireAuth: true
-      },
+      name: 'Route',
+      component: Route,
+      // mat: {
+      //   requireAuth: true
+      // },
       children: [
         {
-          path: '',
+          path: '/',
           name: 'Home',
-          component: Route
+          component: Home
+        },
+        {
+          path: '/classify',
+          name: 'Classify',
+          component: Classify
+        },
+        {
+          path: '/shopping',
+          name: 'Shopp',
+          component: Shopp
+        },
+        {
+          path: '/personal-center',
+          name: 'PersCen',
+          component: PersCen
         }
-        // {
-        //   path: '/classify',
-        //   name: 'Classify',
-        //   component: Classify
-        // }
       ]
     },
     // 砍价列表
@@ -147,11 +160,18 @@ export default new Router({
     },
     // 订单号页面
     {
-      path: '/ordernumber',
+      path: '/ordernumber/:numberId?',
       name: 'Ordernumber',
       component: Ordernumber
     }
-  ]
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { x: 0, y: 0 }
+    }
+  }
 })
 
 // Router.beforeEach((to, from, next) => {
