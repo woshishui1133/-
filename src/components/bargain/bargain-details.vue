@@ -1,22 +1,5 @@
 <template>
   <div>
-    <div class="lun">
-      <router-link to="/bargain" tag="button">回</router-link>
-      <el-carousel indicator-position="outside">
-        <el-carousel-item v-for="(item,index) in pics" :key="index">
-          <img :src="item.pic" alt="">
-        </el-carousel-item>
-      </el-carousel>
-    </div>
-    <div class="con">
-       <h3>{{bas.name}}</h3>
-       <p>{{bas.characteristic}}</p>
-       <div>
-         <p>底价<span>￥{{bas.minPrice}}</span></p>
-         <p>原价￥{{bas.originalPrice}}.00</p>
-         <p>库存{{bas.stores}}</p>
-       </div>
-    </div>
       <Shang></Shang>
        <router-link to="/bargain_info" tag="div">
          <div @click="barinId(csId)" class="kan"> 立即发起砍价，最低可砍到1元</div>
@@ -43,14 +26,12 @@ export default {
     }
   },
   created () {
-    let par = this.$route.params.bardetaId
-    // console.log(par)
+    let par = this.$route.query.barId
+
     this.axios.post(`https://api.it120.cc/small4/shop/goods/detail?id=${par}`).then(res => {
       console.log(res.data)
-      this.$store.state.bainfo = res.data.data.basicInfo
-      this.pics = res.data.data.pics
       this.csId = res.data.data.pics[0].goodsId
-      // console.log(this.csId)
+      console.log(this.csId)
       // console.log(this.bas)
       this.baraa = this.$store.state.bargainList.result
     })
@@ -64,6 +45,7 @@ export default {
           this.$store.state.barinId = item.id
         }
       })
+      console.log(this.$store.state.barinId)
     }
   }
 }

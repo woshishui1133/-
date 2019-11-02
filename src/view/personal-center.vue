@@ -1,11 +1,10 @@
 <template>
   <div class="box">
       <div class="top">
-        <img src="../assets/zz.gif" alt="">
+        <img src="../assets/zz.gif" alt="" @click="quit">
         <div>
-          <!-- <p>点击登录</p> -->
-          <router-link to="/Tologin" v-show="!show" tag="p">点击登录</router-link>
-          <span v-show="show">登录成功</span>
+          <router-link to="/Tologin" v-show="!this.$store.state.logstatus" tag="p">点击登录</router-link>
+          <span v-show="this.$store.state.logstatus">登录成功</span>
           <p>积分：0</p>
         </div>
       </div>
@@ -69,6 +68,7 @@
 </template>
 
 <script>
+// import loca from '../vuex/JSON'
 export default {
   data () {
     return {
@@ -76,14 +76,27 @@ export default {
     }
   },
   created () {
-    let token = JSON.parse(window.localStorage.getItem('1902'))
-    if (token) {
-      this.show = true
+    this.$store.state.token = JSON.parse(window.localStorage.getItem('1902'))
+    if (this.$store.state.token) {
+      this.$store.state.logstatus = true
     } else {
-      this.show = false
+      this.$store.state.logstatus = false
     }
-    console.log(token)
+  },
+  methods: {
+    quit () {
+      console.log(1)
+      this.$store.state.token = []
+    }
   }
+  // watch: {
+  //   '$store.state.token': {
+  //     handler: function () {
+  //       loca.save('1902', this.$store.state.token)
+  //     },
+  //     deep: true
+  //   }
+  // }
 
 }
 </script>

@@ -1,9 +1,8 @@
 <template>
   <div class="bargain">
-      <div class="top">
-        <router-link to="/" tag='span'>返回</router-link>
-        <p>砍价列表</p>
-      </div>
+    <div class="header">
+       <hea-der></hea-der>
+    </div>
        <ul>
          <router-link :to="'/bargain-details/'+item.id" v-for="(item,index) in bargainList" :key="index" tag="li" >
            <img :src="item.pic" alt="" @click="barId(item.id)">
@@ -31,7 +30,11 @@
 </template>
 
 <script>
+import HeaDer from '../nav/header'
 export default {
+  components: {
+    HeaDer
+  },
   computed: {
     bargainList () {
       return this.$store.state.bargainList.goodsMap
@@ -51,24 +54,11 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-*{
-  margin: 0;
-  padding: 0;
-  font-size: 0.2rem;
+.header{
+  height: 0.8rem;
 }
-.top{
-     display: flex;
-     justify-content: space-around;
-     height: 0.6rem;
-     align-items: center;
-     box-shadow: slategrey 0 0.02rem 0;
-     p{
-       width: 80%;
-       text-align: center;
-     }
-   }
 .bargain{
-
+    position: relative;
     &>ul{
       height: 3rem;
       &>li{

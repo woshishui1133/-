@@ -6,12 +6,11 @@ import router from './router'
 import axios from 'axios'
 import Qs from 'Qs'
 import store from './vuex/index-vuex'
-// import VueAwesomeSwiper from 'vue-awesome-swiper'
-// import 'swiper/dist/css/swiper.css'
-// Vue.use(VueAwesomeSwiper)
+
 import rem from '../static/rem'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+
 Vue.prototype.axios = axios
 Vue.prototype.Qs = Qs
 Vue.config.productionTip = false

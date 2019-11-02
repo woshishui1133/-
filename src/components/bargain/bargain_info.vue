@@ -45,7 +45,7 @@
            <p>砍掉{{helps}}元</p>
          </div>
       </li>
-    </ul>
+    </ul>2
     <div class="inv" v-show="!show">
       <div class="gx">
           <p><i class="el-icon-close" @click="hide(1)"></i></p>

@@ -1,8 +1,9 @@
 <template>
   <div>
-    <div class="top">
-      <router-link to="/special" tag="span">返回</router-link>
-      <p>专栏详情</p>
+    <div class="header">
+      <hea-der>
+        <span slot="con">专栏详情</span>
+      </hea-der>
     </div>
     <div class="con">
        <h1>{{detlist.title}}</h1>
@@ -14,7 +15,11 @@
 </template>
 
 <script>
+import HeaDer from '../nav/header'
 export default {
+  components: {
+    HeaDer
+  },
   data () {
     return {
       deta: '',
@@ -34,8 +39,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-*{
-  font-size: 0.2rem;
+.header{
+  height: 0.8rem;
 }
 img{
   width: 100%;

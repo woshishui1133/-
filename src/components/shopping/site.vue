@@ -37,12 +37,14 @@
       <div class="shengshi" >
           <h1>请选择省</h1>
           <select v-model="sheng2"  @change="shengs(sheng2)">
+            <option disabled value="">请选择省</option>
             <option v-for="(item,index) in sheng" :key="index">
                <p >{{item.name}}</p>
             </option>
           </select>
           <h1>请选择市</h1>
           <select v-model="shi2" @change="shis(shi2)">
+            <option disabled value="">请选择市</option>
             <option v-for="(item,index) in shi" :key="index">
                <p>{{item.name}}</p>
             </option>
@@ -178,9 +180,14 @@ export default {
     }
   }
    button{
-      width: 2rem;
+      width: 4rem;
       height: 0.4rem;
-      margin: 0.2rem 30%;
+      margin: 0.3rem 20%;
+      border-radius: 0.1rem;
+      border:none;
+      outline: none;
+      background:springgreen;
+      color: white;
     }
 }
 .shengshi{

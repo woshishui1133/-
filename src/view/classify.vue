@@ -34,6 +34,7 @@ export default {
     top:0.2rem;
     left:2rem;
     background: url('../assets/1571812022.png') no-repeat 0.1rem;
+    background-size: 0.2rem 0.2rem;
     padding-left:0.5rem;
     border: 0.01rem solid gainsboro;
     border-radius: 0.2rem;

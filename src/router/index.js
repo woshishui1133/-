@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 // import HelloWorld from '@/view/HelloWorld'
 import Bargain from '@/components/bargain/bargain'
 import barDeta from '@/components/bargain/bargain-details'

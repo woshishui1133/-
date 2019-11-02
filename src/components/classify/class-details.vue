@@ -1,10 +1,16 @@
 <template>
   <div class="cladeta">
-    <div class="top">
-      <router-link to="/classify" tag="span">回</router-link>
-      <p>分类商品</p>
+    <div class="header">
+       <hea-der>
+         <p slot='route'><router-link to='/classify'>回</router-link></p>
+         <span slot="con">分类商品</span>
+       </hea-der>
     </div>
-     <ul>
+    <div v-show="this.fenxq.length<=0" class="shang">
+         <i class="el-icon-present"></i>
+         <p>还没有商品</p>
+    </div>
+     <ul v-show="this.fenxq.length>0">
        <router-link :to="{path:'/particulars',query:{id:item.id}}" tag="li" v-for="(item,index) in fenxq" :key="index">
          <div>
            <img :src="item.pic" alt="">
@@ -23,21 +29,17 @@
 
 <script>
 import Product from '../../services/prodct-service'
+import HeaDer from '../nav/header'
 const _product = new Product()
 export default {
-  computed: {
-    fenxq () {
-      return this.$store.state.quanList.filter(item => {
-        if (item.categoryId === this.cladetaId) {
-          return item
-        }
-      })
-    }
+  components: {
+    HeaDer
   },
   data () {
     return {
       cladetaId: '',
-      fenxx: []
+      fenxq: [],
+      fenshow: false
     }
   },
   methods: {
@@ -50,13 +52,18 @@ export default {
       this.$store.state.quanList = res.data.data
       // console.log(this.$store.state.quanList)
     })
+    this.$store.state.quanList.filter(item => {
+      if (item.categoryId === this.cladetaId) {
+        this.fenxq.push(item)
+      }
+    })
   }
 }
 </script>
 
 <style lang="scss" scoped>
-*{
-  font-size:0.2rem;
+.header{
+  height: 0.8rem;
 }
 .cladeta{
   width: 100%;
@@ -113,16 +120,19 @@ export default {
       }
     }
   }
+  .shang{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    .el-icon-present{
+      font-size: 1.8rem;
+      margin-top: 30%;
+    }
+    p{
+      font-size: 0.5rem;
+      color: slategrey;
+    }
+  }
 }
-.top{
-     display: flex;
-     justify-content: space-around;
-     height: 0.6rem;
-     align-items: center;
-     box-shadow: slategrey 0 0.02rem 0;
-     p{
-       width: 80%;
-       text-align: center;
-     }
-   }
+
 </style>

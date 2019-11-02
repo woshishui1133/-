@@ -8,7 +8,7 @@
      </ul>
      <div class="lei">
        <div class="lun">
-        <el-carousel :interval="5000" arrow="always">
+        <el-carousel :interval="5000" >
           <el-carousel-item v-for="(item,index) in navlist" :key="index">
            <img :src="item.icon" alt="">
           </el-carousel-item>

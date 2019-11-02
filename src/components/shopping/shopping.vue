@@ -76,6 +76,7 @@ export default {
     }
   },
   created () {
+    // 购物车
     this.$store.state.gouwuList = JSON.parse(window.localStorage.getItem('gouwu'))
   },
   data () {
@@ -142,6 +143,12 @@ export default {
     '$store.state.gouwuList': {
       handler: function () {
         loca.save('gouwu', this.$store.state.gouwuList)
+      },
+      deep: true
+    },
+    '$store.getters.nums': {
+      handler: function () {
+        loca.save('num00', this.$store.getters.nums)
       },
       deep: true
     }

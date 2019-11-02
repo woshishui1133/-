@@ -23,14 +23,20 @@ const store = new Vuex.Store({
     dele: false,
     dizhilist: [], // 地址数据
     moren: [], // 默认地址
-    ordernumber: []// 订单号数据
+    ordernumber: [], // 订单号数据
+    shunum: 0,
+    logstatus: false // 登录状态
   },
   mutations: {
     // 登录
     fan (state, obj) {
-      console.log(obj)
+      // if (obj === '') {
+      //   return false
+      // } else {
+      //   state.token.push(obj)
+      // }
       state.token.push(obj)
-      this.$store.state.token = JSON.parse(window.localStorage.getItem('1902'))
+      // this.$store.state.token = JSON.parse(window.localStorage.getItem('1902'))
       console.log(state.token)
 
       // state.token = obj
@@ -98,12 +104,12 @@ const store = new Vuex.Store({
   getters: {
     // 总个数
     nums (state) {
-      let numss1 = 0
+      let shunum0 = 0
       state.gouwuList.map(item => {
-        numss1 += item.num
+        shunum0 += item.num
         // console.log(numss1)
       })
-      return numss1
+      return shunum0
     },
     // 总价
     prices (state) {

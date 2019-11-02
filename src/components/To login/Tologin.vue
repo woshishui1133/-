@@ -48,17 +48,6 @@ export default {
         pwd: m
       }
 
-      // let _this = this
-      // this.$refs[obj].validate((valid) => {
-      //   if (valid) {
-      //     sessionStorage.setItem('token', 'true')
-      //     _this.$router.push({path: '/Home'})
-      //   } else {
-      //     console.log('error submit!!')
-      //     return false
-      //   }
-      // })
-
       _product.register(obj).then(res => {
         console.log(res.data)
         if (res.data.code === 0) {
@@ -67,8 +56,10 @@ export default {
             yy: res.data.data.uid
           }
           this.$store.commit('fan', obj)
-          this.$router.push('/')
         }
+        // if (res.data.code === 0) {
+        //   this.$router.push('/')
+        // }
       })
     }
   },

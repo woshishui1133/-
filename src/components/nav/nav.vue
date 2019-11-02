@@ -10,7 +10,7 @@
           <p>分类</p>
         </router-link>
         <router-link to="/shopping" tag="li">
-           <i class=" el-icon-shopping-cart-full"></i>
+           <i class="el-icon-shopping-cart-full"></i>
            <span class="num11">{{numss}}</span>
             <p>购物车</p>
        </router-link>
@@ -28,7 +28,20 @@ export default {
     numss () {
       return this.$store.getters.nums
     }
+
+  },
+  data () {
+    return {
+    }
+  },
+  created () {
+    if (JSON.parse(window.localStorage.getItem('gouwu')) === null) {
+      return false
+    } else {
+      this.$store.state.gouwuList = JSON.parse(window.localStorage.getItem('gouwu'))
+    }
   }
+
 }
 </script>
 

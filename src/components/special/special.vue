@@ -1,9 +1,12 @@
 <template>
   <div class="special">
-     <div class="top">
-         <router-link to="/" tag='span'>返回</router-link>
-       <p>严选专栏</p>
-     </div>
+    <div class="header">
+      <hea-der>
+       <p slot='route'><router-link to='/'>回</router-link></p>
+       <span slot="con" class="ss">严选专栏</span>
+      </hea-der>
+    </div>
+
      <ul>
        <li v-for="(item,index) in specialList" :key="index">
           <div>
@@ -20,7 +23,11 @@
 </template>
 
 <script>
+import HeaDer from '../nav/header'
 export default {
+  components: {
+    HeaDer
+  },
   computed: {
     specialList () {
       return this.$store.state.specialList
@@ -30,6 +37,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.header{
+  height: 0.8rem;
+}
 .special{
   font-size: 0.2rem;
   .top{
@@ -85,5 +95,8 @@ export default {
       }
     }
   }
+}
+.ss{
+  color: slategray;
 }
 </style>

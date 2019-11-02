@@ -1,13 +1,5 @@
 <template>
   <div class="par11">
-    <div class="lun">
-      <el-carousel indicator-position="outside">
-         <router-link to="/" tag="button">回</router-link>
-        <el-carousel-item v-for="(item,index) in pics" :key="index">
-          <img :src="item.pic" alt="">
-        </el-carousel-item>
-      </el-carousel>
-    </div>
      <Shang></Shang>
      <div class="parjia">
        <ul>
@@ -91,7 +83,6 @@ export default {
       index00: 99,
       index11: 99,
       list: [],
-      pics: [],
       bainfo: [],
       prop: [],
       prop1: [],
@@ -107,11 +98,17 @@ export default {
     }
   },
   created () {
+    if (JSON.parse(window.localStorage.getItem('gouwu')) === null) {
+      return false
+    } else {
+      this.$store.state.gouwuList = JSON.parse(window.localStorage.getItem('gouwu'))
+    }
+
     let id = this.$route.query.id
-    this.$store.state.partId = id
+    console.log(id)
     _product.part(id).then(res => {
       console.log(res.data.data)
-      this.$store.state.commList = res.data.data
+      // this.$store.state.commList = res.data.data
       this.bainfo = res.data.data.basicInfo
       this.prop = res.data.data.properties[0]
       if (res.data.data.properties.length >= 2) {
@@ -119,8 +116,6 @@ export default {
       }
       console.log(this.prop)
       // console.log(this.$store.state.commList)
-      this.pics = res.data.data.pics
-      // console.log(this.pics)
     })
   },
   methods: {
@@ -170,6 +165,7 @@ export default {
         this.$store.state.num = 1
       }
     },
+    // 点击添加购物车
     gouwuche () {
       if (this.prId) {
         let obg = {
@@ -183,6 +179,7 @@ export default {
           size: this.size,
           sizeid: this.sizeid
         }
+        this.gwcshow = false
         console.log(obg)
         this.$store.commit('gouwulist', obg)
       } else {
@@ -216,6 +213,12 @@ export default {
         loca.save('gouwu', this.$store.state.gouwuList)
       },
       deep: true
+    },
+    '$store.getters.nums': {
+      handler: function () {
+        loca.save('num00', this.$store.getters.nums)
+      },
+      deep: true
     }
   }
 }
@@ -225,23 +228,7 @@ export default {
 .par11{
    width: 100%;
 }
-.lun{
-   button{
-    width: 0.4rem;
-    height: 0.4rem;
-    border:none;
-    border-radius: 50%;
-    background: white;
-    position: fixed;
-    top:0.2rem;
-    left: 0.2rem;
-    z-index: 5;
-    outline: none;
-  }
-   img{
-      width: 100%;
-    }
-}
+
 .parjia{
   width: 100%;
   height: 0.6rem;
@@ -396,19 +383,24 @@ export default {
     }
     &>div{
       display: flex;
-      border: 0.01rem solid slategray;
+      // border: 0.01rem solid slategray;
       margin-left: 2.5rem;
       button{
         width: 0.5rem;
         height: 0.4rem;
         font-size: 0.3rem;
+        outline: none;
+        background: white;
+        border: 0.01rem solid slategray;
       }
       span{
         display: block;
         width: 0.5rem;
-        height: 0.4rem;
+        height: 0.39rem;
         font-size: 0.3rem;
         text-align: center;
+        border-top: 0.01rem solid;
+        border-bottom: 0.01rem solid;
       }
     }
   }

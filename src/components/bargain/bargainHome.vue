@@ -1,7 +1,7 @@
 <template>
   <div class="bargain">
       <ul>
-          <router-link :to="'/bargain-details/'+item.id" tag="li" v-for="(item,index) in bargainList" :key="index">
+          <router-link :to="{path:'/bargain-details',query:{barId:item.id}}" tag="li" v-for="(item,index) in bargainList" :key="index">
            <img :src="item.pic" alt="" @click="barId(item.id)">
            <div @click="barId(item.id)">
              <p>{{item.name}}</p>
