@@ -149,7 +149,16 @@ class Product {
       }
     })
   }
-
+  // 用户的所有订单
+  orderlist (token) {
+    return _http.request({
+      type: 'post',
+      url: 'https://api.it120.cc/small4/order/list',
+      data: {
+        token: token
+      }
+    })
+  }
   // detail方法
   detail (productId) {
     return _http.request({

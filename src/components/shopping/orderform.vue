@@ -51,7 +51,7 @@
       </div>
       <div class="submit">
           <p>合计：￥{{prices}}</p>
-           <router-link :to="{path:'/ordernumber',query:{orderId: this.$store.state.ordernumber.id}}" tag='p'>
+           <router-link :to="{path:'/ordernumber',query:{orderId: this.$store.state.orderid}}" tag='p'>
           <span @click="dingdan1">提交订单</span>
           </router-link>
       </div>
@@ -132,7 +132,8 @@ export default {
       data: Qs.stringify(obj)
     }).then(res => {
       console.log(res.data)
-      this.$store.state.ordernumber = res.data.data
+      this.$store.state.orderid = res.data.data.id
+      this.$store.state.ordernumber.push(res.data.data)
       console.log(this.$store.state.ordernumber)
     })
   },

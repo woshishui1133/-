@@ -56,10 +56,8 @@ export default {
             yy: res.data.data.uid
           }
           this.$store.commit('fan', obj)
+          // this.$router.push({path: '/'})
         }
-        // if (res.data.code === 0) {
-        //   this.$router.push('/')
-        // }
       })
     }
   },

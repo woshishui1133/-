@@ -104,19 +104,19 @@ export default {
       this.$store.state.gouwuList = JSON.parse(window.localStorage.getItem('gouwu'))
     }
 
-    let id = this.$route.query.id
-    console.log(id)
-    _product.part(id).then(res => {
-      console.log(res.data.data)
-      // this.$store.state.commList = res.data.data
-      this.bainfo = res.data.data.basicInfo
-      this.prop = res.data.data.properties[0]
-      if (res.data.data.properties.length >= 2) {
-        this.prop1 = res.data.data.properties[1]
-      }
-      console.log(this.prop)
-      // console.log(this.$store.state.commList)
-    })
+    // let id = this.$route.query.id
+    // console.log(id)
+    // _product.part(id).then(res => {
+    //   console.log(res.data.data)
+    //   // this.$store.state.commList = res.data.data
+    //   this.bainfo = res.data.data.basicInfo
+    //   this.prop = res.data.data.properties[0]
+    //   if (res.data.data.properties.length >= 2) {
+    //     this.prop1 = res.data.data.properties[1]
+    //   }
+    //   console.log(this.prop)
+    //   // console.log(this.$store.state.commList)
+    // })
   },
   methods: {
     // 规格价格
@@ -194,6 +194,19 @@ export default {
     // 显示购物页面
     xs () {
       this.gwcshow = true
+      let id = this.$route.query.id
+      console.log(id)
+      _product.part(id).then(res => {
+        console.log(res.data.data)
+        // this.$store.state.commList = res.data.data
+        this.bainfo = res.data.data.basicInfo
+        this.prop = res.data.data.properties[0]
+        if (res.data.data.properties.length >= 2) {
+          this.prop1 = res.data.data.properties[1]
+        }
+        console.log(this.prop)
+      // console.log(this.$store.state.commList)
+      })
     },
     // 隐藏购物页面
     yic () {

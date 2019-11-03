@@ -10,13 +10,14 @@
       </div>
       <div class="hot">新上线更稳定的付费快递查询接口</div>
       <div class="ding">
-         <div class="ding-top">
+         <!-- <div class="ding-top"> -->
+         <router-link to='/orderxq' tag='div' class="ding-top">
            <div>
                <i class="el-icon-date"></i>
                <p>我的订单</p>
            </div>
             <i class="el-icon-arrow-right"></i>
-         </div>
+        </router-link>
         <ul>
           <li>
             <i class="el-icon-bank-card"></i>
@@ -68,7 +69,7 @@
 </template>
 
 <script>
-// import loca from '../vuex/JSON'
+import loca from '../vuex/JSON'
 export default {
   data () {
     return {
@@ -88,15 +89,15 @@ export default {
       console.log(1)
       this.$store.state.token = []
     }
+  },
+  watch: {
+    '$store.state.logstatus': {
+      handler: function () {
+        loca.save('logs', this.$store.state.logstatus)
+      },
+      deep: true
+    }
   }
-  // watch: {
-  //   '$store.state.token': {
-  //     handler: function () {
-  //       loca.save('1902', this.$store.state.token)
-  //     },
-  //     deep: true
-  //   }
-  // }
 
 }
 </script>

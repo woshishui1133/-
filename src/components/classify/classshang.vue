@@ -86,14 +86,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-*{
-  font-size: 0.3rem;
-}
 ul{
   list-style: none;
 }
 .shang{
   position: relative;
+  height: 19.2rem;
+  overflow: hidden;
 }
 .nav{
   width: 2rem;

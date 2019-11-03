@@ -25,7 +25,11 @@ const store = new Vuex.Store({
     moren: [], // 默认地址
     ordernumber: [], // 订单号数据
     shunum: 0,
-    logstatus: false // 登录状态
+    logstatus: false, // 登录状态
+    orderid: '', // 订单号的ID
+    orderxq: [], // 我的订单详情
+    order: [] // 订单号内容
+
   },
   mutations: {
     // 登录

@@ -2,8 +2,10 @@
   <div>
       <ul class="footer">
         <router-link to="/" tag="li">
-          <i class="el-icon-s-home"></i>
+        <div>
+           <i class="el-icon-s-home"></i>
           <p>首页</p>
+        </div>
         </router-link>
        <router-link to="/classify" tag="li">
          <i class="el-icon-s-order"></i>

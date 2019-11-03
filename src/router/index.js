@@ -22,6 +22,7 @@ import Orderform from '../components/shopping/orderform'
 import Site from '../components/shopping/site'
 import Sitelist from '../components/shopping/sitelist'
 import Ordernumber from '../components/shopping/ordernumber'
+import Orderxq from '../components/To login/orderxq'
 
 Vue.use(Router)
 
@@ -164,6 +165,12 @@ export default new Router({
       path: '/ordernumber/:numberId?',
       name: 'Ordernumber',
       component: Ordernumber
+    },
+    // 我的订单
+    {
+      path: '/orderxq',
+      name: 'Orderxq',
+      component: Orderxq
     }
   ],
   scrollBehavior (to, from, savedPosition) {

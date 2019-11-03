@@ -9,11 +9,12 @@
        <div class="order">
          <p class="price">￥</p>
          <div class="order_con">
-           <p>商品总价：<span>￥{{ order.amount}}</span></p>
-           <p>订单号：{{ order.orderNumber}}</p>
+           <p>商品总价：<span>￥{{ order[0].amount}}</span></p>
+           <p>订单号：{{ order[0].orderNumber}}</p>
          </div>
        </div>
        <Moren></Moren>
+       <p>{{order}}</p>
     </div>
   </div>
 </template>
@@ -29,7 +30,11 @@ export default {
   },
   computed: {
     order () {
-      return this.$store.state.ordernumber
+      return this.$store.state.ordernumber.filter(item => {
+        if (item.id === this.$store.state.orderid) {
+          return item
+        }
+      })
     }
   },
   data () {
@@ -42,8 +47,10 @@ export default {
     this.$store.state.ordernumber = JSON.parse(window.localStorage.getItem('order'))
     console.log(token)
     let id = this.$route.query.orderId
+    console.log(this.$route.query.orderId)
     _product.orderxq(token[0].kk, id).then(res => {
       console.log(res.data)
+      this.$store.state.orderxq.push(res.data.data)
     })
   }
 
