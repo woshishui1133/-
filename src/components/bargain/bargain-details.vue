@@ -1,9 +1,7 @@
 <template>
   <div>
       <Shang></Shang>
-       <router-link to="/bargain_info" tag="div">
-         <div @click="barinId(csId)" class="kan"> 立即发起砍价，最低可砍到1元</div>
-       </router-link>
+      <div @click="barinId(csId)" class="kan"> 立即发起砍价，最低可砍到1元</div>
   </div>
 </template>
 
@@ -26,6 +24,8 @@ export default {
     }
   },
   created () {
+    this.$store.state.logstatus = JSON.parse(window.localStorage.getItem('logs'))
+
     let par = this.$route.query.barId
 
     this.axios.post(`https://api.it120.cc/small4/shop/goods/detail?id=${par}`).then(res => {
@@ -39,22 +39,26 @@ export default {
   methods: {
     barinId (v) {
       console.log(v)
-      this.$store.state.barId = v
-      this.baraa.filter(item => {
-        if (item.goodsId === v) {
-          this.$store.state.barinId = item.id
-        }
-      })
-      console.log(this.$store.state.barinId)
+      if (this.$store.state.logstatus) {
+        this.$store.state.barId = v
+        this.baraa.filter(item => {
+          if (item.goodsId === v) {
+            this.$store.state.barinId = item.id
+          }
+        })
+        this.$router.push({path: '/bargain_info'})
+        console.log(this.$store.state.barinId)
+      } else {
+        this.$router.push({path: '/Tologin'})
+        console.log(this.$store.state.logstatus)
+      }
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
-*{
-  font-size: 0.2rem;
-}
+
 .lun{
   button{
     width: 0.4rem;

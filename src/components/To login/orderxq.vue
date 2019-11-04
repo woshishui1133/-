@@ -64,10 +64,10 @@ export default {
   created () {
     this.$store.state.token = JSON.parse(window.localStorage.getItem('1902'))
     this.$store.state.logstatus = JSON.parse(window.localStorage.getItem('logs'))
-    let aa = 0
-    let id = this.$store.state.token[aa].kk
+
     console.log(this.$store.state.logstatus)
     if (this.$store.state.logstatus) {
+      let id = this.$store.state.token.kk
       console.log(id)
       _product.orderlist(id).then(res => {
         // console.log(res.data)

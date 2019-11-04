@@ -14,7 +14,7 @@
           </el-carousel-item>
         </el-carousel>
        </div>
-       <ul v-show="!show">
+       <ul v-show="!show" class="ss">
           <router-link :to="{path:'/class-details',query:{cladetaId:item.id}}"  v-for="(item,index) in productList" :key="index" tag="li">
             <img :src="item.icon" alt="">
             <p>{{item.name}}</p>
@@ -86,14 +86,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-ul{
-  list-style: none;
-}
+
 .shang{
   position: relative;
-  height: 19.2rem;
-  overflow: hidden;
+  // height: 19.2rem;
+  // overflow: hidden;
 }
+
 .nav{
   width: 2rem;
   text-align: center;
@@ -123,7 +122,7 @@ ul{
   .lun{
     width: 90%;
     margin: 0 auto;
-    height: 3rem;
+    height: 3.5rem;
    .el-carousel__item{
       img{
          width: 100%;
@@ -135,6 +134,7 @@ ul{
   ul{
     display: flex;
     flex-wrap: wrap;
+    height: 21rem;
     li{
       text-align: center;
       width: 33.3%;

@@ -25,6 +25,7 @@ export default {
     }
   },
   created () {
+    this.$store.state.logstatus = JSON.parse(window.localStorage.getItem('logs'))
   },
   methods: {
     blur () {
@@ -56,7 +57,10 @@ export default {
             yy: res.data.data.uid
           }
           this.$store.commit('fan', obj)
-          // this.$router.push({path: '/'})
+          this.$store.state.logstatus = true
+          setTimeout(() => {
+            this.$router.push({path: '/'})
+          }, 500)
         }
       })
     }
@@ -65,6 +69,12 @@ export default {
     '$store.state.token': {
       handler: function () {
         loca.save('1902', this.$store.state.token)
+      },
+      deep: true
+    },
+    '$store.state.logstatus': {
+      handler: function () {
+        loca.save('logs', this.$store.state.logstatus)
       },
       deep: true
     }

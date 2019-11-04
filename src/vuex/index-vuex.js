@@ -12,7 +12,7 @@ const store = new Vuex.Store({
     quanList: [], // 全部商品详情
     commList: [], // 商品详情内容
     partId: '', // 详情页传递Id
-    token: [], // 登录成功
+    token: {}, // 登录成功
     barinId: '', // 砍价详情传的ID
     barId: '',
     bainfo: [], // 砍价详情
@@ -34,12 +34,7 @@ const store = new Vuex.Store({
   mutations: {
     // 登录
     fan (state, obj) {
-      // if (obj === '') {
-      //   return false
-      // } else {
-      //   state.token.push(obj)
-      // }
-      state.token.push(obj)
+      state.token = obj
       // this.$store.state.token = JSON.parse(window.localStorage.getItem('1902'))
       console.log(state.token)
 

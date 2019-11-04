@@ -90,9 +90,9 @@ export default {
   created () {
     let token = JSON.parse(window.localStorage.getItem('1902'))
     this.$store.state.gouwuList = JSON.parse(window.localStorage.getItem('gouwu'))
-    this.token = token[0].kk
-    // console.log(this.token)
-    _product.default(token[0].kk).then(res => {
+    this.token = token.kk
+    console.log(this.token)
+    _product.default(token.kk).then(res => {
       // console.log(res.data)
       this.$store.state.moren = res.data.data
       console.log(this.$store.state.moren)
@@ -123,7 +123,7 @@ export default {
     console.log(this.payment)
     // 订单号生成
     let obj = {
-      token: token[0].kk,
+      token: token.kk,
       goodsJsonStr: JSON.stringify(this.payment)
     }
     Axios({

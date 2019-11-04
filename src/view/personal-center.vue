@@ -78,19 +78,24 @@ export default {
   },
   created () {
     this.$store.state.token = JSON.parse(window.localStorage.getItem('1902'))
-    if (this.$store.state.token) {
-      this.$store.state.logstatus = true
-    } else {
-      this.$store.state.logstatus = false
-    }
+    this.$store.state.logstatus = JSON.parse(window.localStorage.getItem('logs'))
   },
   methods: {
     quit () {
       console.log(1)
-      this.$store.state.token = []
+      this.$store.state.token = {}
+      console.log(this.$store.state.token)
+      console.log(this.$store.state.logstatus)
+      this.$store.state.logstatus = false
     }
   },
   watch: {
+    '$store.state.token': {
+      handler: function () {
+        loca.save('1902', this.$store.state.token)
+      },
+      deep: true
+    },
     '$store.state.logstatus': {
       handler: function () {
         loca.save('logs', this.$store.state.logstatus)

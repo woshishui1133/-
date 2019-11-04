@@ -20,7 +20,8 @@
           <p>已砍<span>{{helps}}</span>元</p>
         </div>
         <div class="invite">
-            <p>已当前价格购买</p>
+            <!-- <p>已当前价格购买</p> -->
+            <p @click="kan">自己先砍一刀</p>
             <button @click="yaoq(2)">邀请好友砍价</button>
         </div>
         <div class="date">
@@ -45,7 +46,7 @@
            <p>砍掉{{helps}}元</p>
          </div>
       </li>
-    </ul>2
+    </ul>
     <div class="inv" v-show="!show">
       <div class="gx">
           <p><i class="el-icon-close" @click="hide(1)"></i></p>
@@ -69,7 +70,8 @@
 </template>
 
 <script>
-
+import Product from '../../services/prodct-service'
+const _product = new Product()
 export default {
   computed: {
     barId () {
@@ -95,7 +97,8 @@ export default {
     return {
       kanj: [],
       name: '',
-      show: true
+      show: false,
+      toid: {}
     }
   },
   methods: {
@@ -106,16 +109,28 @@ export default {
     hide (a) {
       console.log(a)
       this.show = true
+    },
+    kan () {
+      let obj = {
+        token: this.toid.kk,
+        id: this.$store.state.barinId,
+        uid: this.toid.yy
+      }
+      _product.kan(obj).then(res => {
+        console.log(res.data)
+      })
     }
 
   },
   created () {
-    // console.log(JSON.parse(window.localStorage.getItem('1902')))
     let token = JSON.parse(window.localStorage.getItem('1902'))
-    // console.log(token[0].yy)
-    this.axios.post(`https://api.it120.cc/small4/shop/goods/kanjia/info?kjid=${this.$store.state.barinId}&joiner=${token[0].yy}`).then(res => {
+    console.log(token.yy)
+    this.toid = token
+    console.log(this.toid)
+    this.axios.post(`https://api.it120.cc/small4/shop/goods/kanjia/info?kjid=${this.$store.state.barinId}&joiner=${token.yy}`).then(res => {
       console.log(res.data)
       this.kanj = res.data.data.kanjiaInfo
+      console.log(this.kanj)
       this.name = res.data.data.joiner.nick
       this.$store.state.helps = res.data.data.helps
     })

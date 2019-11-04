@@ -4,10 +4,10 @@
        <hea-der></hea-der>
     </div>
        <ul>
-         <router-link :to="'/bargain-details/'+item.id" v-for="(item,index) in bargainList" :key="index" tag="li" >
+         <router-link :to="{path:'/bargain-details',query:{barId:item.id}}" v-for="(item,index) in bargainList" :key="index" tag="li" >
            <img :src="item.pic" alt="" @click="barId(item.id)">
            <div @click="barId(item.id)">
-             <p>{{item.name}}</p>
+             <p v-html="item.name">{{item.name}}</p>
              <p>{{item.characteristic}}</p>
              <ul>
                <li>

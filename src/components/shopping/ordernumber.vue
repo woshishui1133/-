@@ -14,7 +14,6 @@
          </div>
        </div>
        <Moren></Moren>
-       <p>{{order}}</p>
     </div>
   </div>
 </template>
@@ -48,7 +47,7 @@ export default {
     console.log(token)
     let id = this.$route.query.orderId
     console.log(this.$route.query.orderId)
-    _product.orderxq(token[0].kk, id).then(res => {
+    _product.orderxq(token.kk, id).then(res => {
       console.log(res.data)
       this.$store.state.orderxq.push(res.data.data)
     })

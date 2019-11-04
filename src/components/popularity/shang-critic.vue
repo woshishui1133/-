@@ -9,7 +9,7 @@
       </el-carousel>
     </div>
     <div class="con">
-       <h3>{{bas.name}}</h3>
+       <h3 v-html="bas.name">{{bas.name}}</h3>
        <p>{{bas.characteristic}}</p>
        <div>
          <p>底价<span>￥{{bas.minPrice}}</span></p>
@@ -66,6 +66,7 @@ export default {
     }
   },
   created () {
+    console.log(this.partId)
     // 人气
     // this.$store.state.partId = this.$route.query.id
     // // // 砍价

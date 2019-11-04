@@ -36,9 +36,9 @@ export default {
   },
   created () {
     let token = JSON.parse(window.localStorage.getItem('1902'))
-    console.log(token[0].kk)
-    this.token = token[0].kk
-    _product.dizhi(token[0].kk).then(res => {
+    console.log(token.kk)
+    this.token = token.kk
+    _product.dizhi(token.kk).then(res => {
       console.log(res.data.data)
       this.$store.state.dizhilist = res.data.data
       this.$store.state.dizhilist[0].isDefault = true

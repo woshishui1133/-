@@ -88,8 +88,8 @@ export default {
   },
   created () {
     let token = JSON.parse(window.localStorage.getItem('1902'))
-    console.log(token[0].kk)
-    this.token = token[0].kk
+    console.log(token.kk)
+    this.token = token.kk
     _product.sheng().then(res => {
       console.log(res.data)
       this.sheng = res.data.data

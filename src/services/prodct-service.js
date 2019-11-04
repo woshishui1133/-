@@ -15,7 +15,18 @@ class Product {
       url: 'https://api.it120.cc/small4/shop/goods/kanjia/list'
     })
   }
-  // 砍价详情
+  // 砍一刀
+  kan (obj) {
+    return _http.request({
+      type: 'post',
+      url: 'https://api.it120.cc/small4/shop/goods/kanjia/help',
+      data: {
+        token: obj.token,
+        kjid: obj.id,
+        joinerUser: obj.uid
+      }
+    })
+  }
   // 精选方法
   jingx () {
     return _http.request({

@@ -76,7 +76,7 @@ export default {
     }
   },
   created () {
-
+    this.$store.state.logstatus = JSON.parse(window.localStorage.getItem('logs'))
   },
   data () {
     return {
@@ -125,21 +125,30 @@ export default {
     },
     // 下单
     xiadan () {
-      let arr = []
-      this.$store.state.gouwuList.map(item => {
-        if (item.checked === true) {
-          arr.push(item)
+      if (this.$store.state.logstatus) {
+        let arr = []
+        this.$store.state.gouwuList.map(item => {
+          if (item.checked === true) {
+            arr.push(item)
+          }
+        })
+        if (arr.length <= 0) {
+          alert('选择商品')
+        } else {
+          this.$router.push({path: '/orderform'})
         }
-      })
-      if (arr.length <= 0) {
-        alert('选择商品')
       } else {
-        this.$router.push({path: '/orderform'})
+        this.$router.push({path: '/Tologin'})
       }
     }
   },
   watch: {
-
+    '$store.state.gouwuList': {
+      handler: function () {
+        loca.save('gouwu', this.$store.state.gouwuList)
+      },
+      deep: true
+    },
     '$store.getters.nums': {
       handler: function () {
         loca.save('num00', this.$store.getters.nums)
