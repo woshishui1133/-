@@ -18,7 +18,7 @@
            </li>
             <li>
             <p>选择地区</p>
-            <input type="text" class="ins" v-model="sheng2" placeholder="请选择">
+            <input type="text" class="ins" v-model="sheng2" placeholder="请选择" @click="uu">
             <input type="text"  class="ins" v-model="shi2" placeholder="请选择">
             <input type="text"  class="ins" v-model="shi2" placeholder="请选择">
            </li>
@@ -34,7 +34,7 @@
             <button @click="submitForm(ruleForm,shiId,shengId)">保存</button>
         </form>
       </div>
-      <div class="shengshi" >
+      <div class="shengshi" :class="show===true?'a1':''">
           <h1>请选择省</h1>
           <select v-model="sheng2"  @change="shengs(sheng2)">
             <option disabled value="">请选择省</option>
@@ -49,7 +49,6 @@
                <p>{{item.name}}</p>
             </option>
           </select>
-
       </div>
   </div>
 </template>
@@ -60,6 +59,7 @@ const _product = new Product()
 export default {
   data () {
     return {
+      show: false,
       dizhilist: [],
       sheng: [],
       shi: [],
@@ -127,6 +127,9 @@ export default {
         }
       })
       console.log(this.shiId)
+    },
+    uu () {
+      this.show = !this.show
     }
   }
 }
@@ -196,6 +199,12 @@ export default {
   height: 2rem;
   // border: 0.01rem solid;
   align-items: center;
+  position: relative;
+  top: 4rem;
+  left: 0rem;
+  transition: top  2s;
 }
-
+.a1{
+  top:0rem;
+}
 </style>

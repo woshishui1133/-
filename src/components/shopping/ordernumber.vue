@@ -20,8 +20,8 @@
 
 <script>
 import Moren from './morendizhi'
-import Product from '../../services/prodct-service'
-const _product = new Product()
+// import Product from '../../services/prodct-service'
+// const _product = new Product()
 
 export default {
   components: {
@@ -42,15 +42,15 @@ export default {
     }
   },
   created () {
-    let token = JSON.parse(window.localStorage.getItem('1902'))
+    // let token = JSON.parse(window.localStorage.getItem('1902'))
     this.$store.state.ordernumber = JSON.parse(window.localStorage.getItem('order'))
-    console.log(token)
-    let id = this.$route.query.orderId
-    console.log(this.$route.query.orderId)
-    _product.orderxq(token.kk, id).then(res => {
-      console.log(res.data)
-      this.$store.state.orderxq.push(res.data.data)
-    })
+    // console.log(token)
+    // let id = this.$route.query.orderId
+    // console.log(this.$route.query.orderId)
+    // _product.orderxq(token.kk, id).then(res => {
+    //   console.log(res.data)
+    //   this.$store.state.orderxq.push(res.data.data)
+    // })
   }
 
 }

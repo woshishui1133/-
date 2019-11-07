@@ -215,7 +215,7 @@ export default {
             color: red;
           }
           div{
-            border: 0.01rem solid slategray;
+            // border: 0.01rem solid slategray;
             button{
               width: 0.3rem;
             }
@@ -223,6 +223,8 @@ export default {
               display: block;
               width: 0.3rem;
               text-align: center;
+              border-top: 0.01rem solid;
+              border-bottom: 0.01rem solid;
             }
           }
         }

@@ -8,9 +8,9 @@
      <span slot="con">订单详情</span>
     </hea-der>
     </div>
-
      <ul class="order">
-       <li v-for="(item,index) in order" :key='index'>
+      <!-- <router-link :to="{path:'/ordersp',query:{orid:index}}" v-for="(item,index,s) in order" :key='s' tag='li'> -->
+      <li v-for="(item,index,s) in order" :key='s' @click="pinglun(index,s)">
          <div class="top">
            <p>内容</p>
            <p>价格</p>
@@ -26,14 +26,16 @@
             <p>{{item2.number}}</p>
          </div>
         <div class="bottom"  v-for="(item3,index3) in ordernum" v-if='Number(item3.id)===Number(index)' :key='index3'>
-            <p class="wei" v-show="item.status=-1">未支付</p>
-            <p  class="yi" v-show="item.status=0">已支付</p>
+            <p class="wei" v-show="item3.status===-1">{{item3.statusStr}}</p>
+            <p  class="yi" v-show="item3.status===0">未支付</p>
+            <p  class="yi" v-show="item3.status===3">未评论</p>
+            <p  class="yi" v-show="item3.status===4">已支付</p>
             <p>订单号：{{item3.orderNumber}}</p>
             <p>总价：{{item3.amount}}</p>
             <p>总数：{{item3.goodsNumber}}</p>
             <button>支付</button>
          </div>
-       </li>
+      </li>
      </ul>
   </div>
 </template>
@@ -58,7 +60,7 @@ export default {
   data () {
     return {
       orderid: []
-      // ordernum: []
+
     }
   },
   created () {
@@ -70,9 +72,9 @@ export default {
       let id = this.$store.state.token.kk
       console.log(id)
       _product.orderlist(id).then(res => {
-        // console.log(res.data)
+        console.log(res.data)
         this.$store.state.order = res.data.data.goodsMap
-        console.log(this.$store.state.order)
+        // console.log(this.$store.state.order)
         this.orderid = Object.keys(this.$store.state.order)
         console.log(this.orderid)
 
@@ -81,6 +83,7 @@ export default {
             return item.id === Number(item)
           })
         })
+        this.$store.state.orderxq = this.$store.state.orderxq.reverse()
         console.log(this.$store.state.orderxq)
       })
     } else {
@@ -88,6 +91,14 @@ export default {
     }
   },
   methods: {
+    pinglun (v, i) {
+      console.log(i)
+      if (this.$store.state.orderxq[i].status >= 3) {
+        this.$router.push({path: '/ordersp', query: {orid: v}})
+      } else {
+        alert('请支付')
+      }
+    }
 
   }
 
@@ -115,6 +126,7 @@ export default {
      }
      .con{
        display: flex;
+       flex-wrap: wrap;
        justify-content: space-around;
        align-items: center;
        width: 7rem;
@@ -123,6 +135,10 @@ export default {
        box-shadow: slategrey 0 0 0.02rem;
        .nn{
          width: 3rem;
+       }
+       .ping{
+         width: 100%;
+         display: flex;
        }
      }
      .bottom{

@@ -124,7 +124,8 @@ export default {
     // 订单号生成
     let obj = {
       token: token.kk,
-      goodsJsonStr: JSON.stringify(this.payment)
+      goodsJsonStr: JSON.stringify(this.payment),
+      expireMinutes: 0
     }
     Axios({
       method: 'post',

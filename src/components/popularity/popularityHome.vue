@@ -50,21 +50,26 @@ export default {
 <style lang="scss"  scoped>
 .popul{
   //  width: 7.2rem;
-     margin-left:0rem;
+    //  margin-left:0rem;
    ul{
      list-style: none;
      display: flex;
      flex-wrap: wrap;
      justify-content: space-around;
      li{
-       width: 40%;
+       width: 50%;
+       display: flex;
+       flex-wrap: wrap;
        position: relative;
        img{
          height: 3.2rem;
+         width: 2.5rem;
+         margin: 0 auto;
        }
        div{
          width: 80%;
          position: absolute;
+         left:0.6rem;
          bottom:0.7rem;
          p{
            width: 80%;
@@ -79,6 +84,10 @@ export default {
        }
        h3{
          color: red;
+         width: 70%;
+         height: 0.4rem;
+         line-height: 0.4rem;
+         margin: 0 auto;
        }
      }
    }

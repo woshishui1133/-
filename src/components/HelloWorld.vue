@@ -1,3 +1,4 @@
+/* eslint-disable no-sequences */
 <template>
   <div class="hello">
     <div id="my">
@@ -28,7 +29,7 @@
         </ul>
      </div>
      <!-- 砍价 -->
-      <Bargain></Bargain>
+      <Bar-gain></Bar-gain>
       <!-- 精选专题  -->
       <Special></Special>
       <!-- 人气推荐 -->
@@ -37,16 +38,12 @@
 </template>
 
 <script>
-import Bargain from '../view/bargain'
-import Special from '../view/special'
-import Popularity from '../view/popularity'
-// import Route from '../components/route'
+
 export default {
   components: {
-    Bargain,
-    Special,
-    Popularity
-    // Route
+    'Bar-gain': resolve => { require(['../view/bargain'], resolve) }, // 懒加载
+    'Special': resolve => { require(['../view/special'], resolve) },
+    'Popularity': resolve => { require(['../view/popularity'], resolve) }
   },
   computed: {
     productList () {

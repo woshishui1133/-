@@ -166,7 +166,20 @@ class Product {
       type: 'post',
       url: 'https://api.it120.cc/small4/order/list',
       data: {
-        token: token
+        token: token,
+        pageSize: 1000
+      }
+    })
+  }
+
+  // 商品评论
+  ping (obj) {
+    return _http.request({
+      type: 'post',
+      url: 'https://api.it120.cc/small4/order/reputation',
+      data: {
+        postJsonString: obj.postJsonString,
+        token: obj.token
       }
     })
   }

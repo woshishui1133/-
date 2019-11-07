@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="class">
      <div class="top">
        <input type="text" placeholder="搜索商品">
      </div>
@@ -17,6 +17,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.class{
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: left 3s;
+}
+.aa{
+  left:-2rem;
+}
 
 .top{
   width: 100%;

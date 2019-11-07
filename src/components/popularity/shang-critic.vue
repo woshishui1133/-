@@ -26,7 +26,7 @@
        <ul>
          <li v-for="(item,index) in pinlun" :key="index">
            <img src="../../assets/asw.png" alt="">
-           <div class="con">
+           <div class="con2">
              <div>
                <span>匿名用户</span>
                <span>{{item.goods.goodReputationStr}}</span>
@@ -34,7 +34,7 @@
              <p>{{item.goods.goodReputationRemark}}</p>
              <div>
                <span>{{item.goods.dateReputation}}</span>
-               <span>选择规格：{{item.goods.goodsName}}</span>
+               <span>选择规格：<span v-html="item.goods.goodsName">{{item.goods.goodsName}}</span></span>
              </div>
            </div>
          </li>
@@ -136,7 +136,7 @@ export default {
         height: 0.6rem;
         border-radius: 50%;
       }
-      .con{
+      .con2{
         height: 1rem;
         width: 5.5rem;
         div{
@@ -176,7 +176,7 @@ export default {
     border:none;
     border-radius: 50%;
     background: white;
-    position: absolute;
+    position: fixed;
     top:0.2rem;
     left: 0.2rem;
     z-index: 5;

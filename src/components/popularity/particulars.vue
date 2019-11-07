@@ -358,7 +358,7 @@ export default {
             height: 0.4rem;
             line-height: 0.4rem;
             text-align: center;
-            border:0.01rem solid slategray;
+            border:0.01rem solid ;
             justify-content: space-around;
             border-radius: 0.1rem;
             margin-right: 0.4rem;
@@ -409,7 +409,7 @@ export default {
       span{
         display: block;
         width: 0.5rem;
-        height: 0.39rem;
+        height: 0.38rem;
         font-size: 0.3rem;
         text-align: center;
         border-top: 0.01rem solid;

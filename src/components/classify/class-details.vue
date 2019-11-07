@@ -50,13 +50,15 @@ export default {
     // console.log(this.cladetaId)
     _product.fenxq().then(res => {
       this.$store.state.quanList = res.data.data
-      // console.log(this.$store.state.quanList)
+      console.log(this.$store.state.quanList)
+      this.$store.state.quanList.filter(item => {
+        if (item.categoryId === this.cladetaId) {
+          this.fenxq.push(item)
+        }
+      })
     })
-    this.$store.state.quanList.filter(item => {
-      if (item.categoryId === this.cladetaId) {
-        this.fenxq.push(item)
-      }
-    })
+
+    console.log(this.fenxq)
   }
 }
 </script>

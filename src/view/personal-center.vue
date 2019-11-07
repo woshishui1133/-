@@ -55,10 +55,10 @@
             <i class="el-icon-star-off"></i>
             <p>我的收藏</p>
           </li>
-          <li>
+          <router-link to='/sitelist' tag='li'>
             <i class="el-icon-map-location"></i>
             <p>我的地址</p>
-          </li>
+          </router-link>
           <li>
             <i class="el-icon-service"></i>
             <p>联系客服</p>

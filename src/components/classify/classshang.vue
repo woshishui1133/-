@@ -89,8 +89,7 @@ export default {
 
 .shang{
   position: relative;
-  // height: 19.2rem;
-  // overflow: hidden;
+
 }
 
 .nav{
